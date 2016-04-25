@@ -1,4 +1,4 @@
-# Rack::Skippable
+# Rack::Skippable [![Build Status](https://travis-ci.org/sunaot/rack-skippable.svg?branch=master)](https://travis-ci.org/sunaot/rack-skippable)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rack/skippable`. To experiment with that code, run `bin/console` for an interactive prompt.
 
