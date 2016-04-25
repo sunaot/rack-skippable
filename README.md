@@ -1,8 +1,19 @@
 # Rack::Skippable [![Build Status](https://travis-ci.org/sunaot/rack-skippable.svg?branch=master)](https://travis-ci.org/sunaot/rack-skippable)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rack/skippable`. To experiment with that code, run `bin/console` for an interactive prompt.
+Rack::Skippable helps your Rack application to avoid running app logic (app#call) in some conditions.
 
-TODO: Delete this and the text above, and describe your gem
+## Usage
+
+```ruby
+skip_when = ->(env) {
+  request = Rack::Request.new(env)
+  return request.path == '/img'
+}
+use Rack::Skippable.wrap(Rack::Auth::Basic, skip_when) do |u, p|
+  expected = [ENV['NAME'], ENV['PASSWORD']]
+  expected == [u, p]
+end
+```
 
 ## Installation
 
@@ -20,19 +31,9 @@ Or install it yourself as:
 
     $ gem install rack-skippable
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rack-skippable.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sunaot/rack-skippable.
 
 
 ## License
